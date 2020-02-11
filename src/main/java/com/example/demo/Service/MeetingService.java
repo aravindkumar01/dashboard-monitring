@@ -74,6 +74,18 @@ public class MeetingService {
 		
 	}
 	
+	public int countMeeting() {
+		
+		try {
+			
+			return repo.getMeeting();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+			// TODO: handle exception
+		}
+	}
+	
 	
 /*********************meeting status***************************/
 	

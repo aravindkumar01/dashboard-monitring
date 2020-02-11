@@ -69,5 +69,17 @@ public class DepartmentService {
 		}
 		
 	}
+	
+	
+	public int depCount() {
+		try {
+			
+			return repo.getDepCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+			// TODO: handle exception
+		}
+	}
 
 }

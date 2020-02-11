@@ -69,5 +69,18 @@ public class EmployeeService {
 		}
 		
 	}
+	
+	
+	public int getEmployeeCount() {
+		
+		try {
+			
+			return repo.countEmp();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+			// TODO: handle exception
+		}
+	}
 }
 	
