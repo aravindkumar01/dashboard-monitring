@@ -74,11 +74,11 @@ public class MeetingService {
 		
 	}
 	
-	public int countMeeting() {
+	public long countMeeting() {
 		
 		try {
 			
-			return repo.getMeeting();
+			return repo.count();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;

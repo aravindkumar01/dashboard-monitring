@@ -23,12 +23,12 @@ public class DashboardService {
 	public Dashboard getAll(){
 		
 		try {
-			int meeting=meetingSer.countMeeting();
+			long meeting=meetingSer.countMeeting();
 			int employees=emp.getEmployeeCount();
 			int department=dep.depCount();
 			
 			Dashboard dash=new Dashboard();
-			dash.setMeeting(meeting);
+			//dash.setMeeting(meeting);
 			dash.setEmployees(employees);
 			dash.setDepartments(department);
 			

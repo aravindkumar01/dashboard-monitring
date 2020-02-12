@@ -9,6 +9,8 @@ import com.example.demo.Entity.Meeting;
 @Repository
 public interface MetingRepo extends JpaRepository<Meeting, Long>{
 
-	@Query("select count(m) Meeting m")
-	int getMeeting();
+	//@Query("select count(m) Meeting m")
+	//long getMeeting();
+	
+	long count();
 }

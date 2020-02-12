@@ -11,4 +11,14 @@ public class ViewController {
 	public String loginMessage(){
 		return "index";
 	}
+	
+	@RequestMapping("/employeeDetails")
+	public String employeeDetails(){
+		return "employeeDetails";
+	}
+	@RequestMapping("/addEmployee")
+	public String addEmployee(){
+		return "addemployee";
+	}
+	
 }
