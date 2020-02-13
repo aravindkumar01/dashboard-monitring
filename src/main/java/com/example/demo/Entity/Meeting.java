@@ -31,8 +31,7 @@ public class Meeting {
 	@Column
     private String notes;
 	
-	@Column
-    private String status;
+	
 	
 	@Column
     private String date_of_event;
@@ -77,13 +76,6 @@ public class Meeting {
 		this.notes = notes;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	public String getDate_of_event() {
 		return date_of_event;

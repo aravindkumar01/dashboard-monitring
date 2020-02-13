@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Employee</h1>
+            <h1 class="m-0 text-dark">Meeting</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Add Employee</li>
+              <li class="breadcrumb-item active">Add Meeting</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,26 +33,22 @@
             <!-- general form elements disabled -->
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Employee Details</h3>
+                <h3 class="card-title">Meeting Details</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <form role="form" onsubmit="myFunction()">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- text input -->
-                      <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Enter first name" id="firstname" required="required">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Enter last name" id="lastname" required="required">
-                      </div>
-                    </div>
-                  </div>
+                  
+                  <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Enter title of meeting" id="title" required="required">
+                   </div>
+                   
+                   <div class="form-group">
+                        <label>Title</label>
+                        <input type="date" class="form-control" placeholder="Date of event" id="doe" required="required">
+                   </div>
+                      
                   <div class="form-group">
                     <label>Department</label>
                     <select class="form-control" id="department">
@@ -60,70 +56,18 @@
                           
                         </select>
                   </div>
-				  <div class="form-group">
-                    <label>Degree</label>
-                    <input type="text" class="form-control" placeholder="Enter degree" id="degree">
-                  </div>
-                   <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email" id="email">
-                  </div>
-                  <div class="form-group">
-                    <label>Date of birth</label>
-                    <input type="date" class="form-control" placeholder="Enter date of brith" id="dob">
-                  </div>
-				  <div class="form-group">
-                    <label>Gender</label>
-                    <select class="form-control" id="gender">
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          
-                        </select>
-                  </div>
+				
                   <div class="row">
                     <div class="col-sm-12 col-xs-12">
                       <!-- textarea -->
                       <div class="form-group">
-                        <label>Address</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter your address" id="address" required="required"></textarea>
+                        <label>Notes</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter your notes" id="notes" required="required"></textarea>
                       </div>
                     </div>                    
                   </div>
-
-				<div class="row">
-                    <div class="col-lg-3 col-xs-12">
-                      <!-- Select multiple-->
-                      <div class="form-group">
-                        <label>State</label>
-                         <input type="text" class="form-control" placeholder="Enter state" required="required">
-                      </div>
-                    </div>
-                
-                    <div class="col-lg-3 col-xs-12">
-                      <!-- select -->
-                      <div class="form-group">
-                        <label>District</label>
-                        
-                          <input type="text" class="form-control" placeholder="Enter district" id="district">
-                      </div>
-                    </div>                   
-                 
-					<div class="col-lg-3 col-xs-12">
-						<div class="form-group">
-							<label>City</label>
-							         <input type="text" class="form-control" placeholder="Enter city" id="city">
-                
-						</div>		
-					</div>
-					<div class="col-lg-3 col-xs-12">
-						<div class="form-group">
-							<label>Pincode</label>
-							         <input type="number" class="form-control" placeholder="Enter pincode" id="pincode">
-                
-						</div>		
-					</div>
-					
-                </div>
+               
+				
 				<div class="row">
 					<div class="col-md-6">
 						<button type="submit" class="btn btn-block btn-success btn" id="saveEmployee">Save</button>
@@ -233,21 +177,19 @@ $(document).ready(function(){
 
 
 function myFunction(){
-	var employee={"first_name":$("#firstname").val(),"last_name":$("lastname").val(),"department":$("#departtment").value(),
-			"email":$("#email").val(),"degree":$("#degree").val(),"gender":$("#gender").val(),
-			"dob":$("#dob").val(),"address":$("#address").val(),"pincode":$("#pincode").val(),
-			"city":$("#city").val(),"district":$("#district").val(),"state":$("state").val()};
+	var meeting={"title":$("#title").val(),"dep_name":$("#department").val(),"notes":$("#notes").val(),
+			         "date_of_event":$("#doe").val()};
 	
 	
 	  $.ajax({
 	      type: "POST",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/employee/add",
-	      data: JSON.stringify(employee),
+	      url: "/meeting/add",
+	      data: JSON.stringify(meeting),
 	      success :function(result) {
 	         if(result){
-	        	 alert("Employee added!")
+	        	 alert("Meeting added!")
 	         }
 	     },
          error: function(e){          	   

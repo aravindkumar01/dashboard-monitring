@@ -9,7 +9,7 @@ public class ViewController {
 	
 	@RequestMapping("/")
 	public String loginMessage(){
-		return "index";
+		return "login";
 	}
 	
 	@RequestMapping("/employeeDetails")
@@ -21,4 +21,31 @@ public class ViewController {
 		return "addemployee";
 	}
 	
+	@RequestMapping("/addDepartment")
+	public String addDepartment(){
+		return "addDepartment";
+	}
+	
+	
+	@RequestMapping("/departmentDetails")
+	public String departmentDetails(){
+		return "departmentDetails";
+	}
+	
+	
+	@RequestMapping("/addMeeting")
+	public String addMeeting(){
+		return "addMeeting";
+	}
+	
+	
+	@RequestMapping("/meetingDetails")
+	public String meetingDetails(){
+		return "meetingDetails";
+	}
+	
+	@RequestMapping("/meetingStatus")
+	public String meetingStatus(){
+		return "meetingStatus";
+	}
 }

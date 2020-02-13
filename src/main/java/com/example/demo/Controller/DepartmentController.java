@@ -27,7 +27,7 @@ public class DepartmentController {
 	public @ResponseBody boolean add(@RequestBody Department dep) {
 		
 		try {
-			
+			//System.out.println("-----------------service.add(dep)-"+service.add(dep));
 			return service.add(dep);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class DepartmentController {
 	
 	
 	@GetMapping("/all")
-	public List<Department> getAll(){
+	public @ResponseBody List<Department> getAll(){
 		
 		try {
 			
@@ -53,7 +53,7 @@ public class DepartmentController {
 	
 	
 	@GetMapping("/{id}")
-	public Optional<Department> getById(@PathVariable("id") long id) {
+	public @ResponseBody Optional<Department> getById(@PathVariable("id") long id) {
 		try {
 			
 			return service.getById(id);
@@ -66,7 +66,7 @@ public class DepartmentController {
 	
 	
 	@DeleteMapping("/{id}")
-	public boolean delete(@PathVariable("id") long id) {
+	public @ResponseBody boolean delete(@PathVariable("id") long id) {
 		
 		try {
 			return service.deleteById(id);

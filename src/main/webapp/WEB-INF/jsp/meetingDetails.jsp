@@ -64,15 +64,15 @@
 		            <!-- <div class="card-header">
 		              <h3 class="card-title"></h3>
 		            </div> -->
-		            <!-- /.card-header -->
+		            <!-- /.card-header --> 
 		            <div class="card-body">
 		              <table id="example1" class="table table-bordered table-striped">
 		                <thead>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Name</th>                  
-		                  <th>Degree</th>
-		                  <th>Address</th>
+		                  <th>Title</th>                  
+		                  <th>Department</th>
+		                  <th>Date</th>
 						  <th>Edit</th>
 						  <th>Delete</th>
 		                </tr>
@@ -183,14 +183,14 @@ $(document).ready(function(){
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/employee/all",
+	      url: "/meeting/all",
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.first_name,j.degree,j.address,'<i class="fas fa-edit" style="cursor:pointer;"></i>','<i class="fas fa-trash-alt" style="cursor:pointer;">'
+	    			  j.id,j.title,j.dep_name,j.date_of_event,'<i class="fas fa-edit" style="cursor:pointer;"></i>','<i class="fas fa-trash-alt" style="cursor:pointer;">'
 	    		  ]).draw( false );
 	    	  });
 	     },

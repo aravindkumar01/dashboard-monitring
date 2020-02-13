@@ -40,7 +40,7 @@ public class MeetingController {
 	
 	
 	@GetMapping("/all")
-	public List<Meeting> getAll(){
+	public @ResponseBody List<Meeting> getAll(){
 		
 		try {
 			
@@ -55,7 +55,7 @@ public class MeetingController {
 	
 	
 	@GetMapping("/{id}")
-	public Optional<Meeting> getById(@PathVariable("id") long id) {
+	public @ResponseBody Optional<Meeting> getById(@PathVariable("id") long id) {
 		try {
 			
 			return service.getById(id);
@@ -68,7 +68,7 @@ public class MeetingController {
 	
 	
 	@DeleteMapping("/{id}")
-	public boolean delete(@PathVariable("id") long id) {
+	public @ResponseBody boolean delete(@PathVariable("id") long id) {
 		
 		try {
 			return service.deleteById(id);
@@ -99,7 +99,7 @@ public class MeetingController {
 	
 	
 	@GetMapping("/status/all")
-	public List<MeetingStatus> getAllStatus(){
+	public @ResponseBody List<MeetingStatus> getAllStatus(){
 		
 		try {
 			
@@ -114,7 +114,7 @@ public class MeetingController {
 	
 	
 	@GetMapping("/status/{id}")
-	public Optional<MeetingStatus> getStatusById(@PathVariable("id") long id) {
+	public @ResponseBody Optional<MeetingStatus> getStatusById(@PathVariable("id") long id) {
 		try {
 			
 			return service.getStatusById(id);
@@ -127,7 +127,7 @@ public class MeetingController {
 	
 	
 	@DeleteMapping("/staus/{id}")
-	public boolean deleteStatus(@PathVariable("id") long id) {
+	public @ResponseBody boolean deleteStatus(@PathVariable("id") long id) {
 		
 		try {
 			return service.deleteById(id);

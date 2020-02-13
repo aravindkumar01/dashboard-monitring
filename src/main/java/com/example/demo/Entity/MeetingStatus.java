@@ -24,6 +24,9 @@ public class MeetingStatus {
 	@Column(name="status")
     private String status;
 	
+	@Column(name="notes")
+    private String notes;
+	
 	
 	@Column(name="responce")
     private String responce;

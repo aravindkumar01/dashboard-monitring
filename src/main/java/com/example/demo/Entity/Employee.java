@@ -49,6 +49,20 @@ public class Employee {
 	@Column
 	private String state;
 
+	@Column
+	private String department;
+	
+	
+	
+	
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public Long getId() {
 		return id;
 	}

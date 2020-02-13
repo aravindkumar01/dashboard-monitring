@@ -28,6 +28,7 @@ public class EmployeeController {
 		
 		try {
 			
+			
 			return service.addEmployee(emp);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +39,7 @@ public class EmployeeController {
 	
 	
 	@GetMapping("/all")
-	public List<Employee> getAllEmp(){
+	public @ResponseBody List<Employee> getAllEmp(){
 		
 		try {
 			
@@ -49,6 +50,10 @@ public class EmployeeController {
 			// TODO: handle exception
 		}
 	}
+	
+	
+	
+
 	
 	
 	

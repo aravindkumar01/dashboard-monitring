@@ -41,12 +41,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Employee</h1>
+            <h1 class="m-0 text-dark">Department</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Employee Details</li>
+              <li class="breadcrumb-item active">Department Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -71,8 +71,7 @@
 		                <tr>
 		                  <th>Id</th>
 		                  <th>Name</th>                  
-		                  <th>Degree</th>
-		                  <th>Address</th>
+		                  <th>Description</th>		                  
 						  <th>Edit</th>
 						  <th>Delete</th>
 		                </tr>
@@ -84,8 +83,7 @@
 		                <tr>
 		                  <th>Id</th>
 		                  <th>Name</th>                  
-		                  <th>Degree</th>
-		                  <th>Address</th>
+		                  <th>Description</th>		                  
 						  <th>Edit</th>
 						  <th>Delete</th>
 		                </tr>
@@ -183,14 +181,14 @@ $(document).ready(function(){
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/employee/all",
+	      url: "/department/all",
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.first_name,j.degree,j.address,'<i class="fas fa-edit" style="cursor:pointer;"></i>','<i class="fas fa-trash-alt" style="cursor:pointer;">'
+	    			  j.id,j.name,j.description,'<i class="fas fa-edit" style="cursor:pointer;"></i>','<i class="fas fa-trash-alt" style="cursor:pointer;">'
 	    		  ]).draw( false );
 	    	  });
 	     },
@@ -207,6 +205,29 @@ $(document).ready(function(){
 
 
 
+
+function myFunction(){
+	var employee={"first_name":$("#firstname").val(),"last_name":$("lastname").val(),
+			"email":$("#email").val(),"degree":$("#degree").val(),"gender":$("#gender").val(),
+			"dob":$("#dob").val(),"address":$("address").val(),"pincode":$("#pincode").val(),
+			"city":$("#city").val(),"district":$("#district").val(),"state":$("state").val()};
+	
+	
+	  $.ajax({
+	      type: "POST",
+	      contentType : 'application/json; charset=utf-8',
+	      dataType : 'json',
+	      url: "/employee/add",
+	      data: JSON.stringify(employee),
+	      success :function(result) {
+	        alert(result);
+	     },
+         error: function(e){          	   
+      	  console.log(e)
+      	   
+      	   	        }
+	  });
+}
 
 
 

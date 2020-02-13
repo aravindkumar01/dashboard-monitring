@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Monitering</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -58,15 +58,15 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link">
+    <a href="/dashboard" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Dashboard</span>
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
+    <!-- <div class="sidebar">
+      Sidebar user panel (optional)
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -74,17 +74,17 @@
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
-      </div>
+      </div> -->
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+              <p style="color:white;">
                 Dashboard               
               </p>
             </a>           
@@ -93,7 +93,7 @@
 		   <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p>
+              <p style="color:white;">
                 Employee
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -102,37 +102,66 @@
               <li class="nav-item">
                 <a href="/addEmployee" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Employee</p>
+                  <p style="color:white;">Add Employee</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/employee_data.html" class="nav-link">	
+                <a href="/employeeDetails" class="nav-link">	
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Employee Details</p>
+                  <p style="color:white;">Employee Details</p>
                 </a>
               </li>              
             </ul>
 			</li>
-		  <li class="nav-item has-treeview">
-            <a href="pages/forms/add_employee.html" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p href="pages/forms/general.html">
-                Department Details
-                
-              </p>
-            </a>           
-          </li>
-		  <li class="nav-item has-treeview">
+			
+			
+			 <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Meeting Details
+              <i class="nav-icon fas fa-edit"></i>
+              <p style="color:white;">
+                Department
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="/addDepartment" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p style="color:white;">Add Department</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/departmentDetails" class="nav-link">	
+                  <i class="far fa-circle nav-icon"></i>
+                  <p style="color:white;">Department Details</p>
+                </a>
+              </li>              
+            </ul>
+			</li>
+	
+		  <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p style="color:white;">
+                Meeting
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/addMeeting" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Meeting</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/meetingDetails" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Meeting Details</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/meetingStatus" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Meeting Status</p>
                 </a>
@@ -148,79 +177,7 @@
             </a>           
           </li>
           
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-         
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Pages
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/examples/invoice.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Invoice</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/profile.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/e_commerce.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>E-commerce</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/projects.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Projects</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project_add.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project_edit.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Edit</p>
-                </a>
-              </li>              
-            </ul>
-          </li>          
-          <li class="nav-header">MISCELLANEOUS</li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
-            </a>
-          </li>          
+                
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -229,21 +186,21 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+  <!-- <div class="content-wrapper">
+    Content Header (Page header)
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
+          </div>/.col
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+          </div>/.col
+        </div>/.row
+      </div>/.container-fluid
+    </div> -->
     <!-- /.content-header -->

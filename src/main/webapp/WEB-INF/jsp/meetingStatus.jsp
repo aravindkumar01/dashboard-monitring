@@ -41,12 +41,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Employee</h1>
+            <h1 class="m-0 text-dark">Department</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Employee Details</li>
+              <li class="breadcrumb-item active">Department Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -70,9 +70,10 @@
 		                <thead>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Name</th>                  
-		                  <th>Degree</th>
-		                  <th>Address</th>
+		                  <th>Employee</th>                  
+		                  <th>Status</th>	
+		                  <th>Notes</th>
+		                  <th>Response</th>	                  
 						  <th>Edit</th>
 						  <th>Delete</th>
 		                </tr>
@@ -83,9 +84,10 @@
 		                <tfoot>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Name</th>                  
-		                  <th>Degree</th>
-		                  <th>Address</th>
+		                  <th>Employee</th>                  
+		                  <th>Status</th>	
+		                  <th>Notes</th>
+		                  <th>Response</th>		                  
 						  <th>Edit</th>
 						  <th>Delete</th>
 		                </tr>
@@ -183,14 +185,16 @@ $(document).ready(function(){
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/employee/all",
+	      url: "/meeting/status/all",
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.first_name,j.degree,j.address,'<i class="fas fa-edit" style="cursor:pointer;"></i>','<i class="fas fa-trash-alt" style="cursor:pointer;">'
+	    			  j.id,j.emp_id,j.status,j.notes,
+	    			  '<button type="button" onClick="status('+j.id+',true)" class="btn btn-success">Accept</button>',
+	    			  '<button type="button" onClick="status('+j.id+',fasle)"  class="btn btn-danger">Danger</button>'
 	    		  ]).draw( false );
 	    	  });
 	     },
@@ -205,7 +209,10 @@ $(document).ready(function(){
 
 
 
-
+function status(id,option){
+	
+	alert(id+"----"+option);
+}
 
 
 
