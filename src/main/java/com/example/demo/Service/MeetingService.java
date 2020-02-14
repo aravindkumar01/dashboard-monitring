@@ -3,11 +3,15 @@ package com.example.demo.Service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entity.Employee;
 import com.example.demo.Entity.Meeting;
 import com.example.demo.Entity.MeetingStatus;
+import com.example.demo.Repo.EmployeeRepo;
 import com.example.demo.Repo.MeetingStatusRepo;
 import com.example.demo.Repo.MetingRepo;
 
@@ -16,17 +20,19 @@ public class MeetingService {
 	
 	
 	
-
+ 
 	@Autowired
 	MetingRepo repo;
 	
-	
+	@Autowired
+	EmployeeRepo empRepo;
 	
 	public boolean add(Meeting entity) {
 		
 	try {
 		
 		repo.save(entity);
+		addEmpMeet(entity);
 		return true;
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -84,6 +90,36 @@ public class MeetingService {
 			return 0;
 			// TODO: handle exception
 		}
+	}
+	
+	private boolean addEmpMeet(Meeting entity) {
+		
+		try {
+			
+			List<Employee> list=empRepo.getDepartment(entity.getDep_name());
+			
+			
+			for(Employee emp:list) {
+				MeetingStatus status=new MeetingStatus();
+				      	status.setDepartment(entity.getDep_name());
+				      	status.setEmp_id(emp.getEmail());
+				      	status.setStatus("accecpt");
+				      	status.setNotes(entity.getNotes());
+				      	status.setDate_of_event(entity.getDate_of_event());
+				      	status.setTitle(entity.getTitle());
+				      
+				
+				add(status);
+			}
+			
+			return true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 	
 	

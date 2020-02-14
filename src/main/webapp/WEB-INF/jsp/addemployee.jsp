@@ -233,7 +233,7 @@ $(document).ready(function(){
 
 
 function myFunction(){
-	var employee={"first_name":$("#firstname").val(),"last_name":$("lastname").val(),"department":$("#departtment").value(),
+	var employee={"first_name":$("#firstname").val(),"last_name":$("lastname").val(),"department":$("#department").val(),
 			"email":$("#email").val(),"degree":$("#degree").val(),"gender":$("#gender").val(),
 			"dob":$("#dob").val(),"address":$("#address").val(),"pincode":$("#pincode").val(),
 			"city":$("#city").val(),"district":$("#district").val(),"state":$("state").val()};

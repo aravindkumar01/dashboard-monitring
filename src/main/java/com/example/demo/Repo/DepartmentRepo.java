@@ -11,4 +11,6 @@ public interface DepartmentRepo extends JpaRepository<Department, Long>{
 
 	@Query("select count(d) from Department d")
 	int getDepCount();
+	
+	
 }

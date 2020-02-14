@@ -17,12 +17,15 @@ public class EmployeeService {
 	EmployeeRepo repo;
 	
 	
+	@Autowired
+	LoginService loginService;
 	
 	public boolean addEmployee(Employee emp) {
 		
 	try {
 		
 		repo.save(emp);
+		loginService.saveLogin(emp);
 		return true;
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -82,5 +85,20 @@ public class EmployeeService {
 			// TODO: handle exception
 		}
 	}
+	
+	
+	
+	
+	public List<Employee> getByDeapartment(String dep){
+		
+		try {
+			return repo.getDepartment(dep);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			// TODO: handle exception
+		}
+	}
+
 }
 	

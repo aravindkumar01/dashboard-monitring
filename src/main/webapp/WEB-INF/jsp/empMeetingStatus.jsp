@@ -41,12 +41,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Employee</h1>
+            <h1 class="m-0 text-dark">Status</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Employee Details</li>
+              <li class="breadcrumb-item active">Meeting Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -64,18 +64,16 @@
 		            <!-- <div class="card-header">
 		              <h3 class="card-title"></h3>
 		            </div> -->
-		            <!-- /.card-header --> 
+		            <!-- /.card-header -->
 		            <div class="card-body">
 		              <table id="example1" class="table table-bordered table-striped">
 		                <thead>
 		                <tr>
 		                  <th>Id</th>
 		                  <th>Title</th>                  
-		                  <th>Department</th>		                 
-		                  <th>Date</th>
-		                  <th>Status</th>
-						  <th>Edit</th>
-						  <th>Delete</th>
+		                  <th>Status</th>		
+		                  <th>View</th>                 
+						  
 		                </tr>
 		                </thead>
 		                <tbody id="employee-table">
@@ -85,11 +83,8 @@
 		                <tr>
 		                  <th>Id</th>
 		                  <th>Title</th>                  
-		                  <th>Department</th>		                  
-		                  <th>Date</th>
-		                  <th>Status</th>
-						  <th>Edit</th>
-						  <th>Delete</th>
+		                   <th>Status</th>		
+		                  <th>View</th>      
 		                </tr>
 		                </tfoot>
 		              </table>
@@ -100,6 +95,10 @@
 		        </div>
 		        <!-- /.col -->
 		      </div>
+      </div>
+      
+      <div class="view content">
+      
       </div>
       <!-- /.row -->
     </section>
@@ -180,22 +179,21 @@ $(document).ready(function(){
 	//alert("ddd");
     var t = $('#example1').DataTable();
      //alert("dd");
+      var id=sessionStorage.getItem("userId");
 
 	  $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/all",
+	      url: "/meeting/status/department/"+id,
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.title,j.dep_name,j.date_of_event,
-	    			  '<i class="fas fa-pie-chart" style="cursor:pointer;">',
-	    			  '<i class="fas fa-edit" style="cursor:pointer;"></i>',
-	    			  '<button onClick="meetingStatus('+j.id+')")><i class="fas fa-trash-alt" style="cursor:pointer;"></button>'
+	    			  j.id,j.title,j.status,
+	    			  '<button onClick="viewMeeting('+j.id+')"><i class="fas fa-eye" style="cursor:pointer;"></i></button>'
 	    			  
 	    		  ]).draw( false );
 	    	  });
@@ -211,11 +209,12 @@ $(document).ready(function(){
 
 
 
-function meetingStatus(id){	
-	sessionStorage.setItem("meetingId", id);
-	window.location.href = '/meetingStatus';
-}
 
+
+
+function viewMeeting(id){
+	
+}
 
 
 

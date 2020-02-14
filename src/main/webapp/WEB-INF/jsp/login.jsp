@@ -28,7 +28,6 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form>
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email" id="email">
           <div class="input-group-append">
@@ -56,11 +55,11 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button id="login-btn" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
-      </form>
+    
 
      <!--  <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
@@ -91,6 +90,56 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+
+$(document).ready(function(){
+	
+	
+	$("#login-btn").click(function(){
+
+		
+		var login={"username":$("#email").val(),"password":$("#password").val()};
+		alert(login);
+		  $.ajax({
+		      type: "GET",
+		      contentType : 'application/json; charset=utf-8',
+		      dataType : 'json',
+		      url: "/login/get",
+		      data: {
+		    	  username:$("#email").val(),
+		    	  password:$("#password").val()
+		      },
+		      success :function(result) {
+		            
+		    	  console.log(result);
+		    	if(result!=null){
+		    		alert("Login done");
+		    		window.location.href = '/dashboard'; 
+		    	}else{
+		    		alert("username or password worng");
+		    	}
+		     },
+	       error: function(e){          	   
+	    	  console.log(e)
+	    	   
+	    	  }
+		  });
+
+		});
+	
+		
+	
+});
+
+
+
+
+
+</script>
 
 </body>
 </html>

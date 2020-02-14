@@ -41,7 +41,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Department</h1>
+            <h1 class="m-0 text-dark">Meeting status</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -180,12 +180,14 @@ $(document).ready(function(){
 	//alert("ddd");
     var t = $('#example1').DataTable();
      //alert("dd");
+    var id=sessionStorage.getItem("meetingId");
+    
 
 	  $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/all",
+	      url: "/meeting/status/"+id,
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);

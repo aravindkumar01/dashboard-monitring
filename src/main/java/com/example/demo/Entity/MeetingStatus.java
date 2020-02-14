@@ -28,8 +28,43 @@ public class MeetingStatus {
     private String notes;
 	
 	
-	@Column(name="responce")
-    private String responce;
+	@Column(name="emp_responce")
+    private String emp_responce;
+	
+	@Column(name="department")
+    private String department;
+
+	
+	@Column(name="date_of_event")
+	private String date_of_event;
+	
+	
+	@Column
+	private String title;
+	
+	
+	
+	
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getDate_of_event() {
+		return date_of_event;
+	}
+
+
+	public void setDate_of_event(String date_of_event) {
+		this.date_of_event = date_of_event;
+	}
 
 
 	public Long getId() {
@@ -62,14 +97,37 @@ public class MeetingStatus {
 	}
 
 
-	public String getResponce() {
-		return responce;
+	public String getNotes() {
+		return notes;
 	}
 
 
-	public void setResponce(String responce) {
-		this.responce = responce;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
+
+
+	public String getEmp_responce() {
+		return emp_responce;
+	}
+
+
+	public void setEmp_responce(String emp_responce) {
+		this.emp_responce = emp_responce;
+	}
+
+
+	public String getDepartment() {
+		return department;
+	}
+
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+
+
 	
 
 }
