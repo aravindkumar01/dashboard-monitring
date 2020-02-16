@@ -6,26 +6,23 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Entity.Employee;
-import com.example.demo.Repo.EmployeeRepo;
+import com.example.demo.Entity.Travel;
+import com.example.demo.Repo.TravelRepo;
 
 @Service
-public class EmployeeService {
+public class TravelService {
+
 	
-	
+
 	@Autowired
-	EmployeeRepo repo;
+	TravelRepo repo;
 	
-	
-	@Autowired
-	LoginService loginService;
-	
-	public boolean addEmployee(Employee emp,String role) {
+	public boolean add(Travel entity) {
 		
 	try {
 		
-		repo.save(emp);
-		loginService.saveLogin(emp,role);
+		repo.save(entity);
+		
 		return true;
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -37,7 +34,7 @@ public class EmployeeService {
 	}
 	
 
-	public List<Employee> getAllEMployee(){
+	public List<Travel> getAll(){
 		
 		try {
 			return repo.findAll();
@@ -49,7 +46,7 @@ public class EmployeeService {
 	}
 
 	
-	public Optional<Employee> getEmpById(long id) {
+	public Optional<Travel> getById(long id) {
 		
 		try {
 			return repo.findById(id);
@@ -72,33 +69,4 @@ public class EmployeeService {
 		}
 		
 	}
-	
-	
-	public int getEmployeeCount() {
-		
-		try {
-			
-			return repo.countEmp();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-			// TODO: handle exception
-		}
-	}
-	
-	
-	
-	
-	public List<Employee> getByDeapartment(String dep){
-		
-		try {
-			return repo.getDepartment(dep);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-			// TODO: handle exception
-		}
-	}
-
 }
-	

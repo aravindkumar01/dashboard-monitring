@@ -13,23 +13,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.Entity.Employee;
-import com.example.demo.Service.EmployeeService;
+import com.example.demo.Entity.Travel;
+import com.example.demo.Service.TravelService;
 
 @Controller
-@RequestMapping("/employee")
-public class EmployeeController {
+@RequestMapping("/travel")
+public class TravelController {
+	
+	
 
 	@Autowired
-	EmployeeService service;
+	TravelService service;
 	
 	@PostMapping("/add")
-	public @ResponseBody boolean newEmployee(@RequestBody Employee emp) {
+	public @ResponseBody boolean add(@RequestBody Travel entity) {
 		
 		try {
 			
-			
-			return service.addEmployee(emp,"employee");
+			return service.add(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return true;
@@ -39,11 +40,11 @@ public class EmployeeController {
 	
 	
 	@GetMapping("/all")
-	public @ResponseBody List<Employee> getAllEmp(){
+	public @ResponseBody List<Travel> getAll(){
 		
 		try {
 			
-			return service.getAllEMployee();
+			return service.getAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -53,15 +54,11 @@ public class EmployeeController {
 	
 	
 	
-
-	
-	
-	
 	@GetMapping("/{id}")
-	public Optional<Employee> getById(@PathVariable("id") long id) {
+	public @ResponseBody Optional<Travel> getById(@PathVariable("id") long id) {
 		try {
 			
-			return service.getEmpById(id);
+			return service.getById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -71,7 +68,7 @@ public class EmployeeController {
 	
 	
 	@DeleteMapping("/{id}")
-	public boolean deleteEmp(@PathVariable("id") long id) {
+	public @ResponseBody boolean delete(@PathVariable("id") long id) {
 		
 		try {
 			return service.deleteById(id);
@@ -81,4 +78,6 @@ public class EmployeeController {
 			// TODO: handle exception
 		}
 	}
+	
+
 }

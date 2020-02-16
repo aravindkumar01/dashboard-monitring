@@ -103,11 +103,12 @@ public class MeetingService {
 				MeetingStatus status=new MeetingStatus();
 				      	status.setDepartment(entity.getDep_name());
 				      	status.setEmp_id(emp.getEmail());
-				      	status.setStatus("accecpt");
+				      	status.setStatus(false);
+				      	status.setEmp_responce(false);
 				      	status.setNotes(entity.getNotes());
 				      	status.setDate_of_event(entity.getDate_of_event());
 				      	status.setTitle(entity.getTitle());
-				      
+				        status.setDep_id(entity.getDep_id());
 				
 				add(status);
 			}
@@ -163,15 +164,46 @@ public class MeetingService {
 	}
 
 	
-	public Optional<MeetingStatus> getStatusById(long id) {
+	public List<MeetingStatus> getStatusById(long id) {
 		
 		try {
-			return status.findById(id);
+			return status.getStatusDep(id);
 		} catch (Exception e) {			
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+	
+	
+	
+
+	
+	public Boolean  updateStatus(Long id,boolean status1){
+		
+		try {
+			status.updateStatus(id,status1);
+			
+			return true;
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+
+	public Boolean  updateStatusEmp(long id,boolean status1){
+		
+		try {
+			status.updateStatusEmp(id,status1);
+			
+			return true;
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	
 	public boolean deleteStatusById(long id) {
 		
@@ -185,6 +217,19 @@ public class MeetingService {
 			// TODO: handle exception
 		}
 		
+	}
+
+
+	public List<MeetingStatus> getStatusByEmp(String emp_id) {
+		
+		try {
+			
+			return status.getListEmp(emp_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			// TODO: handle exception
+		}
 	}
 	
 	

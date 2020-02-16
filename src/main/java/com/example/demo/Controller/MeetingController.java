@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.Entity.Meeting;
@@ -112,12 +113,56 @@ public class MeetingController {
 	}
 	
 	
+
+	@GetMapping("/status/admin")
+	public @ResponseBody boolean updateStatus(@RequestParam("id") Long id,@RequestParam("status") boolean status){
+		
+		try {
+			
+			return service.updateStatus(id,status);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+			// TODO: handle exception
+		}
+	}
+	
+	
+
+	@GetMapping("/status/emp")
+	public @ResponseBody boolean updateStatusEmp(@RequestParam("id") Long id,@RequestParam("status") boolean status){
+		
+		try {
+			
+			return service.updateStatusEmp(id,status);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+			// TODO: handle exception
+		}
+	}
+	
+	
+	
 	
 	@GetMapping("/status/{id}")
-	public @ResponseBody Optional<MeetingStatus> getStatusById(@PathVariable("id") long id) {
+	public @ResponseBody List<MeetingStatus> getStatusById(@PathVariable("id") long id) {
 		try {
 			
 			return service.getStatusById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			// TODO: handle exception
+		}
+	}
+	
+	
+	@GetMapping("/status/employee")
+	public @ResponseBody List<MeetingStatus> getStatusByemployee(@RequestParam("email") String emp_id) {
+		try {
+			
+			return service.getStatusByEmp(emp_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

@@ -193,9 +193,10 @@ $(document).ready(function(){
 	    		  
 	    		  t.row.add( [
 	    			  j.id,j.title,j.dep_name,j.date_of_event,
+	    			  '<button onClick="meetingStatus('+j.dep_id+')")>view</button>',
 	    			  '<i class="fas fa-pie-chart" style="cursor:pointer;">',
-	    			  '<i class="fas fa-edit" style="cursor:pointer;"></i>',
-	    			  '<button onClick="meetingStatus('+j.id+')")><i class="fas fa-trash-alt" style="cursor:pointer;"></button>'
+	    			  '<i class="fas fa-edit" style="cursor:pointer;"></i>'
+	    			  
 	    			  
 	    		  ]).draw( false );
 	    	  });

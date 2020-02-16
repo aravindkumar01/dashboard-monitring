@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Meeting</h1>
+            <h1 class="m-0 text-dark">travel</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Add Meeting</li>
+              <li class="breadcrumb-item active">Add Travel</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,41 +33,35 @@
             <!-- general form elements disabled -->
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Meeting Details</h3>
+                <h3 class="card-title">Travel Details</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <form role="form" onsubmit="myFunction()">
+                
+				  <div class="form-group">
+                    <label>Project</label>
+                    <input type="text" class="form-control" placeholder="Enter name of project" id="project">
+                  </div>
+                 
+            
+            	  <div class="form-group">
+                    <label>From</label>
+                    <input type="text" class="form-control" placeholder="Enter from place" id="from">
+                  </div>
                   
-                  <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" class="form-control" placeholder="Enter title of meeting" id="title" required="required">
-                   </div>
-                   
                    <div class="form-group">
-                        <label>Title</label>
-                        <input type="date" class="form-control" placeholder="Date of event" id="doe" required="required">
-                   </div>
-                      
+                    <label>To</label>
+                    <input type="text" class="form-control" placeholder="Enter to place" id="to">
+                  </div>
+                 
+                 
                   <div class="form-group">
-                    <label>Department</label>
-                    <select class="form-control" id="department">
-                         
-                          
-                        </select>
+                    <label>Amount</label>
+                    <input type="number" class="form-control" placeholder="Enter amount" id="amount">
                   </div>
-				
-                  <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                      <!-- textarea -->
-                      <div class="form-group">
-                        <label>Notes</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter your notes" id="notes" required="required"></textarea>
-                      </div>
-                    </div>                    
-                  </div>
-               
-				
+            
+            
 				<div class="row">
 					<div class="col-md-6">
 						<button type="submit" class="btn btn-block btn-success btn" id="saveEmployee">Save</button>
@@ -146,31 +140,11 @@
 <script>
 
 $(document).ready(function(){
+	sessionStorage.setItem("empId","aravindkumark1997@gmail.com");
 	
-	$.ajax({
-		type: 'GET',
-		dataType: 'json',
-		contentType: 'application/json',
-		url: "/department/all",
-		success: function(data, textStatus ){
-		console.log(data);
-		 $.each(data,function( i,j ) {
-		
-			 $('#department')
-	         .append($("<option></option>")
-	                    .attr("value",j.id)
-	                    .text(j.name)); 
-			
-			 
-	   	  });
-		 
-		
-		},
-		error: function(xhr, textStatus, errorThrown){
-		//alert('request failed'+errorThrown);
-		}
-		
-		});
+	
+    var id=sessionStorage.getItem("empId");
+	
 	
 	
 });
@@ -178,20 +152,20 @@ $(document).ready(function(){
 
 function myFunction(){
 	
-	    
-	var meeting={"title":$("#title").val(),"dep_name":$("#department option:selected").text(),"dep_id":$("#department").val(),"notes":$("#notes").val(),
-			         "date_of_event":$("#doe").val()};
+	var TravelExpence={"project":$("#project").val(),"from":$("#from").val(),
+			"to":$("#to").val(),"amount":$("#amount").val(),"emp_id":$("#id").val()}};
 	
+	//alert(department);
 	
 	  $.ajax({
 	      type: "POST",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/add",
-	      data: JSON.stringify(meeting),
+	      url: "/travel/add",
+	      data: JSON.stringify(TravelExpence),
 	      success :function(result) {
 	         if(result){
-	        	 alert("Meeting added!")
+	        	 alert("TravelExpence added!")
 	         }
 	     },
          error: function(e){          	   

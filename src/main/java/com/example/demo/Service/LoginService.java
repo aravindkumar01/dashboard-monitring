@@ -1,6 +1,6 @@
 package com.example.demo.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class LoginService {
 	LoginRepo repo;
 	
 	
-	public boolean saveLogin(Employee emp) {
+	public boolean saveLogin(Employee emp,String role) {
 		
 		try {
 			
@@ -25,7 +25,7 @@ public class LoginService {
 			
 			l.setUsername(emp.getEmail());
 			l.setPassword(emp.getEmail());
-			l.setRole("employee");
+			l.setRole(role);
 			repo.save(l);
 			return true;
 		} catch (Exception e) {
@@ -51,6 +51,20 @@ public class LoginService {
 			// TODO: handle exception
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	
+	public List<Login> getAll(){
+		
+		
+		try {
+			
+			return repo.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			// TODO: handle exception
 		}
 	}
 	

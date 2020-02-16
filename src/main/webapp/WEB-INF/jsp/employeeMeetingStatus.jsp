@@ -71,7 +71,7 @@
 		                <tr>
 		                  <th>Id</th>
 		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
+		                  <th>Admin Status</th>	
 		                  <th>Notes</th>
 		                  <th>Response</th>	   
 		                </tr>
@@ -83,7 +83,7 @@
 		                <tr>
 		                  <th>Id</th>
 		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
+		                  <th>Admin Status</th>	
 		                  <th>Notes</th>
 		                  <th>Response</th>		                
 						 
@@ -174,24 +174,27 @@ $(function () {
 
 $(document).ready(function(){
 	
+	sessionStorage.setItem("empId","aravindkumark1997@gmail.com");
 	//alert("ddd");
     var t = $('#example1').DataTable();
      //alert("dd");
-    var id=sessionStorage.getItem("meetingId");
+    var id=sessionStorage.getItem("empId");
     
-	//alert(id);
+	alert(id);
 	  $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/"+id,
-	      //data: JSON.stringify(employee),
+	      url: "/meeting/status/employee",
+	      data: {
+	    	  email:id
+	      },
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.emp_id,valueStatus(j.emp_responce),j.notes,
+	    			  j.id,j.emp_id,valueStatus(j.status),j.notes,
 	    			  '<button type="button" onClick="status('+j.id+',true)" class="btn btn-success">Accept</button><button type="button" onClick="status('+j.id+',false)"  class="btn btn-danger">Danger</button>'
 	    		  ]).draw( false );
 	    	  });
@@ -223,7 +226,7 @@ function status(id,option){
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/admin/",
+	      url: "/meeting/status/emp/",
 	      data: {
 	    	  id:id,
 	    	  status:option

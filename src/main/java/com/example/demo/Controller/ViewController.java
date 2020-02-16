@@ -48,4 +48,18 @@ public class ViewController {
 	public String meetingStatus(){
 		return "meetingStatus";
 	}
+
+	
+
+	@RequestMapping("/employeeMeetingStatus")
+	public String employeeMeetingStatus(){
+		return "employeeMeetingStatus";
+	}
+	
+	
+	@RequestMapping("/employeeTravel")
+	public String employeeTravel(){
+		return "employeeTravel";
+	}
+
 }
