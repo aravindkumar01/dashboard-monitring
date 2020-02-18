@@ -31,7 +31,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
+<div class="wrapper">
     
     
   <%--  <jsp:include page="menu.jsp" /> --%>
@@ -49,12 +49,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Meeting status</h1>
+            <h1 class="m-0 text-dark">Travel</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Meeting status Details</li>
+              <li class="breadcrumb-item active">Travel Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -78,10 +78,11 @@
 		                <thead>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
-		                  <th>Notes</th>
-		                  <th>Response</th>	   
+		                  <th>Employee</th>
+		                  <th>From</th>                  
+		                  <th>To</th>
+		                  <th>Amount</th>
+						  <th>Status</th>
 		                </tr>
 		                </thead>
 		                <tbody id="employee-table">
@@ -90,11 +91,11 @@
 		                <tfoot>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
-		                  <th>Notes</th>
-		                  <th>Response</th>		                
-						 
+		                  <th>Employee</th>
+		                  <th>From</th>                  
+		                  <th>To</th>
+		                  <th>Amount</th>
+						  <th>Status</th>
 		                </tr>
 		                </tfoot>
 		              </table>
@@ -185,7 +186,6 @@ $(document).ready(function(){
 });
 
 
-
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -204,23 +204,23 @@ $(document).ready(function(){
 	//alert("ddd");
     var t = $('#example1').DataTable();
      //alert("dd");
-    var id=sessionStorage.getItem("meetingId");
-    
-	//alert(id);
+
 	  $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/"+id,
+	      url: "/travel/all",
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.emp_id,valueStatus(j.emp_responce),j.notes,
-	    			  '<button type="button" onClick="status('+j.id+',true)" class="btn btn-success">Accept</button><button type="button" onClick="status('+j.id+',false)"  class="btn btn-danger">Danger</button>'
+	    			  j.id,j.emp_id,j.place_from,j.place_to,j.place_amount,	    			  
+	    			  checkVaild(j.id,j.admin_status)
 	    		  ]).draw( false );
+	    		  
+	    		  
 	    	  });
 	     },
        error: function(e){          	   
@@ -233,30 +233,37 @@ $(document).ready(function(){
 });
 
 
-function valueStatus(status){
+
+
+function checkVaild(id,status){
 	
 	if(status){
-		return "accept";
-	}
-	return "cancel";
+		return '<button type="button" onClick="status('+id+',false)"  class="btn btn-danger">Danger</button>';
+		}
+	
+	return '<button type="button" onClick="status('+id+',true)" class="btn btn-success">Accept</button>';
 }
-
 
 function status(id,option){
 	
-	alert(id+"----"+option);
+//	alert(id+"----"+option);
 	
 	 $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/admin/",
+	      url: "/travel/status/admin/",
 	      data: {
 	    	  id:id,
 	    	  status:option
 	      },
 	      success :function(result) {
-	           console.log(result);
+	    	  
+	           if(option){
+	        	   alert("Approved");
+	           }else{
+	        	   alert("Canceled");
+	           }
 	     },
       error: function(e){          	   
    	  console.log(e)

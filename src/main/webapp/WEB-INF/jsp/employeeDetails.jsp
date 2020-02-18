@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 
 <html>
@@ -34,8 +37,16 @@
 <div class="wrapper">
     
     
-   <jsp:include page="menu.jsp" />
+   <%-- <jsp:include page="menu.jsp" /> --%>
    <div class="content-wrapper">
+   
+   <ul class="navbar-nav" style="margin-left:30px;">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+     
+    </ul>
+    
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -158,6 +169,24 @@
 
 
 <script>
+
+
+$(document).ready(function(){
+	  $.ajax({
+	      type: "GET",	     
+	      url: "/login/menu",	    
+	      success :function(result) {
+	    	  console.log(result);
+	    	  $(".layout-fixed").append(result);
+	    	
+	     },
+       error: function(e){          	   
+    	  console.log(e)
+    	   
+    	   	        }
+	  });
+	
+});
 
 
 $(function () {

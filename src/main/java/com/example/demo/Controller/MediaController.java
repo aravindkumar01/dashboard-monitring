@@ -11,23 +11,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.Entity.Media;
 import com.example.demo.Entity.Meeting;
-import com.example.demo.Entity.Travel;
-import com.example.demo.Service.TravelService;
+import com.example.demo.Service.MediaService;
 
 @Controller
-@RequestMapping("/travel")
-public class TravelController {
+@RequestMapping("/media")
+public class MediaController {
 
 	
 	@Autowired
-	TravelService service;
+	MediaService service;
 	
 	@PostMapping("/add")
-	public @ResponseBody boolean add(@RequestBody Travel entity) {
+	public @ResponseBody boolean add(@RequestBody Media entity) {
 		
 		try {
 			
@@ -41,7 +40,7 @@ public class TravelController {
 	
 	
 	@GetMapping("/all")
-	public @ResponseBody List<Travel> getAll(){
+	public @ResponseBody List<Media> getAll(){
 		
 		try {
 			
@@ -49,33 +48,20 @@ public class TravelController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-			
+			// TODO: handle exception
 		}
 	}
 	
 	
 	
 	@GetMapping("/{id}")
-	public @ResponseBody Optional<Travel> getById(@PathVariable("id") long id) {
+	public @ResponseBody Optional<Media> getById(@PathVariable("id") long id) {
 		try {
 			
 			return service.getById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-			// TODO: handle exception
-		}
-	}
-	
-	@GetMapping("/status/admin")
-	public @ResponseBody boolean updateStatus(@RequestParam("id") Long id,@RequestParam("status") boolean status){
-		
-		try {
-			
-			return service.updateStatus(id,status);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
 			// TODO: handle exception
 		}
 	}
@@ -92,5 +78,6 @@ public class TravelController {
 			// TODO: handle exception
 		}
 	}
+	
 	
 }

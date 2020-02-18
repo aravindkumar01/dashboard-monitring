@@ -61,5 +61,23 @@ public class ViewController {
 	public String employeeTravel(){
 		return "employeeTravel";
 	}
+	
+	@RequestMapping("/travelDetails")
+	public String travelDetails(){
+		return "travelDetails";
+	}
+	
+	
+	@RequestMapping("/media")
+	public String media(){
+		return "media";
+	}
+	
+	@RequestMapping("/mediaDetails")
+	public String mediaDetails(){
+		return "mediaDetails";
+	}
+	
+	
 
 }

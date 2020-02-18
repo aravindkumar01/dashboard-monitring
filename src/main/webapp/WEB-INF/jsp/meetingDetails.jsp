@@ -31,22 +31,30 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+
     
     
-   <jsp:include page="menu.jsp" />
+  <%--  <jsp:include page="menu.jsp" /> --%>
    <div class="content-wrapper">
+   
+   <ul class="navbar-nav" style="margin-left:30px;">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+     
+    </ul>
+    
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Employee</h1>
+            <h1 class="m-0 text-dark">Meeting</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Employee Details</li>
+              <li class="breadcrumb-item active">Meeting Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -160,6 +168,23 @@
 
 
 <script>
+$(document).ready(function(){
+	  $.ajax({
+	      type: "GET",	     
+	      url: "/login/menu",	    
+	      success :function(result) {
+	    	  console.log(result);
+	    	  $(".layout-fixed").append(result);
+	    	
+	     },
+     error: function(e){          	   
+  	  console.log(e)
+  	   
+  	   	        }
+	  });
+	
+});
+
 
 
 $(function () {

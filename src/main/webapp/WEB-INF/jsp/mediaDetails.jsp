@@ -31,11 +31,13 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
+<div class="wrapper">
     
     
   <%--  <jsp:include page="menu.jsp" /> --%>
    <div class="content-wrapper">
+   
+    
    
    <ul class="navbar-nav" style="margin-left:30px;">
       <li class="nav-item">
@@ -43,18 +45,17 @@
       </li>
      
     </ul>
-    
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Meeting status</h1>
+            <h1 class="m-0 text-dark">Media</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Meeting status Details</li>
+              <li class="breadcrumb-item active">Media Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -72,16 +73,27 @@
 		            <!-- <div class="card-header">
 		              <h3 class="card-title"></h3>
 		            </div> -->
-		            <!-- /.card-header -->
+		            <!-- /.card-header --> 
 		            <div class="card-body">
+		            
+		            <div class="">
+									              
+						<video width="1000" height="500" controls>
+						  <source src="/media/Aathi _ Full Video Song _ Kaththi _ Vijay, Samantha Ruth Prabhu.mp4" type="video/mp4">
+						  <source src="movie.ogg" type="video/ogg">
+						  Your browser does not support the video tag.
+						</video>
+		                
+		              </div>
+		              
+		              
 		              <table id="example1" class="table table-bordered table-striped">
 		                <thead>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
-		                  <th>Notes</th>
-		                  <th>Response</th>	   
+		                  <th>Title</th>                  
+		                                 
+		                  <th>View</th>
 		                </tr>
 		                </thead>
 		                <tbody id="employee-table">
@@ -90,14 +102,14 @@
 		                <tfoot>
 		                <tr>
 		                  <th>Id</th>
-		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
-		                  <th>Notes</th>
-		                  <th>Response</th>		                
-						 
+		                  <th>Title</th>    
+		                  <th>View</th>
 		                </tr>
 		                </tfoot>
 		              </table>
+		              
+		              
+		              
 		            </div>
 		            <!-- /.card-body -->
 		          </div>
@@ -125,6 +137,14 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+
+ <link href="https://vjs.zencdn.net/7.6.6/video-js.css" rel="stylesheet" />
+
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+  
+  
+  
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -185,7 +205,6 @@ $(document).ready(function(){
 });
 
 
-
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -204,22 +223,22 @@ $(document).ready(function(){
 	//alert("ddd");
     var t = $('#example1').DataTable();
      //alert("dd");
-    var id=sessionStorage.getItem("meetingId");
-    
-	//alert(id);
+
 	  $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/"+id,
+	      url: "/media/all",
 	      //data: JSON.stringify(employee),
 	      success :function(result) {
 	            console.log(result);
 	    	  $.each(result,function( i,j ) {
 	    		  
 	    		  t.row.add( [
-	    			  j.id,j.emp_id,valueStatus(j.emp_responce),j.notes,
-	    			  '<button type="button" onClick="status('+j.id+',true)" class="btn btn-success">Accept</button><button type="button" onClick="status('+j.id+',false)"  class="btn btn-danger">Danger</button>'
+	    			  j.id,j.meeting_title,
+	    			  '<button onClick="view('+j.path+')")>view</button>',	    			  
+	    			  
+	    			  
 	    		  ]).draw( false );
 	    	  });
 	     },
@@ -233,38 +252,9 @@ $(document).ready(function(){
 });
 
 
-function valueStatus(status){
-	
-	if(status){
-		return "accept";
-	}
-	return "cancel";
-}
 
-
-function status(id,option){
+function view(path){	
 	
-	alert(id+"----"+option);
-	
-	 $.ajax({
-	      type: "GET",
-	      contentType : 'application/json; charset=utf-8',
-	      dataType : 'json',
-	      url: "/meeting/status/admin/",
-	      data: {
-	    	  id:id,
-	    	  status:option
-	      },
-	      success :function(result) {
-	           console.log(result);
-	     },
-      error: function(e){          	   
-   	  console.log(e)
-   	   
-   	  }
-	  });
-	
-	 
 }
 
 

@@ -29,7 +29,7 @@ public class EmployeeController {
 		try {
 			
 			
-			return service.addEmployee(emp,"employee");
+			return service.addEmployee(emp,emp.getRole());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return true;

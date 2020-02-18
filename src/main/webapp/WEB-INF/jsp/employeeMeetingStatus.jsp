@@ -34,8 +34,16 @@
 <div class="wrapper">
     
     
-   <jsp:include page="menu.jsp" />
+ <%--   <jsp:include page="menu.jsp" /> --%>
    <div class="content-wrapper">
+   
+   <ul class="navbar-nav" style="margin-left:30px;">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+     
+    </ul>
+    
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -159,6 +167,25 @@
 <script>
 
 
+$(document).ready(function(){
+	  $.ajax({
+	      type: "GET",	     
+	      url: "/login/menu",	    
+	      success :function(result) {
+	    	  console.log(result);
+	    	  $(".layout-fixed").append(result);
+	    	
+	     },
+       error: function(e){          	   
+    	  console.log(e)
+    	   
+    	   	        }
+	  });
+	
+});
+
+
+
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -174,13 +201,13 @@ $(function () {
 
 $(document).ready(function(){
 	
-	sessionStorage.setItem("empId","aravindkumark1997@gmail.com");
+	/* sessionStorage.setItem("empId","aravindkumark1997@gmail.com"); */
 	//alert("ddd");
     var t = $('#example1').DataTable();
      //alert("dd");
     var id=sessionStorage.getItem("empId");
     
-	alert(id);
+	//alert(id);
 	  $.ajax({
 	      type: "GET",
 	      contentType : 'application/json; charset=utf-8',
@@ -220,7 +247,7 @@ function valueStatus(status){
 
 function status(id,option){
 	
-	alert(id+"----"+option);
+	//alert(id+"----"+option);
 	
 	 $.ajax({
 	      type: "GET",

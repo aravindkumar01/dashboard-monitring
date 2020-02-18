@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 
 <html>
@@ -31,11 +32,13 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
+<div class="wrapper">
     
     
-  <%--  <jsp:include page="menu.jsp" /> --%>
+   <%-- <jsp:include page="menu.jsp" /> --%>
    <div class="content-wrapper">
+   
+     
    
    <ul class="navbar-nav" style="margin-left:30px;">
       <li class="nav-item">
@@ -49,66 +52,76 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Meeting status</h1>
+            <h1 class="m-0 text-dark">Media</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Meeting status Details</li>
+              <li class="breadcrumb-item active">Add Media</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+    
     <!-- Main content -->
       <div class="main-content">
-      
        <section class="content">
-       <div class="container-fluid">
-		      <div class="row">
-		        <div class="col-12">
-		          
-		          <div class="card">
-		            <!-- <div class="card-header">
-		              <h3 class="card-title"></h3>
-		            </div> -->
-		            <!-- /.card-header -->
-		            <div class="card-body">
-		              <table id="example1" class="table table-bordered table-striped">
-		                <thead>
-		                <tr>
-		                  <th>Id</th>
-		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
-		                  <th>Notes</th>
-		                  <th>Response</th>	   
-		                </tr>
-		                </thead>
-		                <tbody id="employee-table">
-		                      
-		                </tbody>
-		                <tfoot>
-		                <tr>
-		                  <th>Id</th>
-		                  <th>Employee</th>                  
-		                  <th>Emp Status</th>	
-		                  <th>Notes</th>
-		                  <th>Response</th>		                
-						 
-		                </tr>
-		                </tfoot>
-		              </table>
-		            </div>
-		            <!-- /.card-body -->
-		          </div>
-		          <!-- /.card -->
-		        </div>
-		        <!-- /.col -->
-		      </div>
-      </div>
-      <!-- /.row -->
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-12">
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Media Details</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form role="form" onsubmit="myFunction()">
+                
+                 
+                   <div class="form-group">
+                    <label>Meeting</label>
+                    <select class="form-control" id="meeting">                        
+                          
+                      </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>File</label>
+                    <input type="file" class="form-control" name="file" placeholder="Enter name of " id="file">
+                  </div>
+						
+						
+				<div class="row">
+					<div class="col-md-6">
+						<button type="submit" class="btn btn-block btn-success btn" id="saveEmployee">Save</button>
+					</div>
+					<div class="col-md-6">
+						<button type="button" class="btn btn-block btn-info btn">Cancel</button>
+					</div>	
+				</div>
+				
+                </form>
+								
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- general form elements disabled -->
+            
+            <!-- /.card -->
+          </div>
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
-    
       </div>
     <!-- /.content -->
   </div>
@@ -159,12 +172,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-
-<script src="/plugins/datatables/jquery.dataTables.js"></script>
-<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-
-
 <script>
+
 
 
 $(document).ready(function(){
@@ -185,89 +194,71 @@ $(document).ready(function(){
 });
 
 
-
-$(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
-
-
 $(document).ready(function(){
 	
-	//alert("ddd");
-    var t = $('#example1').DataTable();
-     //alert("dd");
-    var id=sessionStorage.getItem("meetingId");
-    
-	//alert(id);
-	  $.ajax({
-	      type: "GET",
-	      contentType : 'application/json; charset=utf-8',
-	      dataType : 'json',
-	      url: "/meeting/status/"+id,
-	      //data: JSON.stringify(employee),
-	      success :function(result) {
-	            console.log(result);
-	    	  $.each(result,function( i,j ) {
-	    		  
-	    		  t.row.add( [
-	    			  j.id,j.emp_id,valueStatus(j.emp_responce),j.notes,
-	    			  '<button type="button" onClick="status('+j.id+',true)" class="btn btn-success">Accept</button><button type="button" onClick="status('+j.id+',false)"  class="btn btn-danger">Danger</button>'
-	    		  ]).draw( false );
-	    	  });
-	     },
-       error: function(e){          	   
-    	  console.log(e)
-    	   
-    	  }
-	  });
+	$.ajax({
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		url: "/meeting/all",
+		success: function(data, textStatus ){
+		console.log(data);
+		 $.each(data,function( i,j ) {
+		
+			 $('#meeting')
+	         .append($("<option></option>")
+	                    .attr("value",j.id)
+	                    .text(j.title)); 
+			
+			 
+	   	  });
+		 
+		
+		},
+		error: function(xhr, textStatus, errorThrown){
+		//alert('request failed'+errorThrown);
+		}
+		
+		});
 	
 	
 });
 
 
-function valueStatus(status){
-	
-	if(status){
-		return "accept";
-	}
-	return "cancel";
-}
 
+function myFunction(){
+	
+	
+	alert($("#file").val());
+	
+	
+	var filename = $('#file').val().split('\\').pop();
+	
+	alert(filename);
+	
+	var Media={"path":$("#file").val(),"meeting_id":$("#meeting").val(),
+			'file_name':filename,
+			"meeting_title":$("#meeting option:selected").text()};
+	
 
-function status(id,option){
 	
-	alert(id+"----"+option);
-	
-	 $.ajax({
-	      type: "GET",
+	  $.ajax({
+	      type: "POST",
 	      contentType : 'application/json; charset=utf-8',
 	      dataType : 'json',
-	      url: "/meeting/status/admin/",
-	      data: {
-	    	  id:id,
-	    	  status:option
-	      },
+	      url: "/media/add",
+	      data: JSON.stringify(Media),
 	      success :function(result) {
-	           console.log(result);
+	         if(result){
+	        	 alert("Department added!")
+	         }
 	     },
-      error: function(e){          	   
-   	  console.log(e)
-   	   
-   	  }
+         error: function(e){          	   
+      	  console.log(e)
+      	   
+      	   	        }
 	  });
-	
-	 
 }
-
-
 
 
 </script>

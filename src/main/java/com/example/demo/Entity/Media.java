@@ -22,6 +22,46 @@ public class Media {
 	
 	@Column(name="type")
     private String type;
+	
+	
+	@Column(name="meeting_id")
+    private Long meeting_id;
+
+	
+	@Column(name="file_name")
+    private String file_name;
+	
+
+	@Column(name="meeting_title")
+    private String meeting_title;
+	
+	
+	
+	
+
+	public String getMeeting_title() {
+		return meeting_title;
+	}
+
+	public void setMeeting_title(String meeting_title) {
+		this.meeting_title = meeting_title;
+	}
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+
+	public Long getMeeting_id() {
+		return meeting_id;
+	}
+
+	public void setMeeting_id(Long meeting_id) {
+		this.meeting_id = meeting_id;
+	}
 
 	public Long getId() {
 		return id;

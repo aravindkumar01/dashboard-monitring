@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="employee_travel")
+@Table(name="employee_allownence")
 public class Travel {
-
+	
+	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -21,24 +21,21 @@ public class Travel {
     private String project;
 	
 	
-	@Column(name="from")
-    private String from;
+	@Column(name="place_from")
+    private String place_from;
 	
+	@Column(name="place_to")
+    private String place_to;
 	
-	@Column(name="to")
-    private String to;
-	
-	@Column(name="amount")
-    private String amount;
-	
-
+	@Column(name="place_amount")
+    private String place_amount;
 	
 	@Column(name="emp_id")
     private String emp_id;
 	
 	
 	@Column(name="admin_status")
-    private boolean admin_status=false;
+    private boolean admin_status;
 
 
 	public Long getId() {
@@ -61,33 +58,33 @@ public class Travel {
 	}
 
 
-	public String getFrom() {
-		return from;
+	public String getPlace_from() {
+		return place_from;
 	}
 
 
-	public void setFrom(String from) {
-		this.from = from;
+	public void setPlace_from(String place_from) {
+		this.place_from = place_from;
 	}
 
 
-	public String getTo() {
-		return to;
+	public String getPlace_to() {
+		return place_to;
 	}
 
 
-	public void setTo(String to) {
-		this.to = to;
+	public void setPlace_to(String place_to) {
+		this.place_to = place_to;
 	}
 
 
-	public String getAmount() {
-		return amount;
+	public String getPlace_amount() {
+		return place_amount;
 	}
 
 
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setPlace_amount(String place_amount) {
+		this.place_amount = place_amount;
 	}
 
 
@@ -109,13 +106,6 @@ public class Travel {
 	public void setAdmin_status(boolean admin_status) {
 		this.admin_status = admin_status;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

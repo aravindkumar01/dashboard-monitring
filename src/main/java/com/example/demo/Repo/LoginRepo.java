@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.Entity.Login;
@@ -13,6 +14,6 @@ public interface LoginRepo extends JpaRepository<Login, Long>{
 
 	
 	@Query("select l from Login l where l.username=:username and l.password=:password")
-	Login login(String username,String password);
+	Login login(@Param(value = "username") String username,@Param(value = "password") String password);
 	
 }

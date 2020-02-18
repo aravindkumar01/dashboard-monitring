@@ -1,8 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-   <jsp:include page="menu.jsp" />
+  
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Monitering</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<%--   
+   <jsp:include page="menu.jsp" /> --%>
    <div class="content-wrapper">
+   
+   <ul class="navbar-nav" style="margin-left:30px;">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+     
+    </ul>
+    
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -139,21 +179,35 @@
 
 <script>
 
+
 $(document).ready(function(){
-	sessionStorage.setItem("empId","aravindkumark1997@gmail.com");
-	
-	
-    var id=sessionStorage.getItem("empId");
-	
-	
+	  $.ajax({
+	      type: "GET",	     
+	      url: "/login/menu",	    
+	      success :function(result) {
+	    	  console.log(result);
+	    	  $(".layout-fixed").append(result);
+	    	
+	     },
+       error: function(e){          	   
+    	  console.log(e)
+    	   
+    	   	        }
+	  });
 	
 });
 
 
+
 function myFunction(){
 	
-	var TravelExpence={"project":$("#project").val(),"from":$("#from").val(),
-			"to":$("#to").val(),"amount":$("#amount").val(),"emp_id":$("#id").val()}};
+//sessionStorage.setItem("empId","aravindkumark1997@gmail.com");
+	
+	
+    var id=sessionStorage.getItem("empId");
+	
+	var TravelExpence={"project":$("#project").val(),"place_from":$("#from").val(),
+			"place_to":$("#to").val(),"place_amount":$("#amount").val(),"emp_id":id};
 	
 	//alert(department);
 	

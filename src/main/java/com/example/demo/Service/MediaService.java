@@ -1,26 +1,42 @@
 package com.example.demo.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Entity.Meeting;
-import com.example.demo.Entity.Travel;
-import com.example.demo.Repo.TravelRepo;
+import com.example.demo.Entity.Media;
+import com.example.demo.Repo.MediaRepo;
 
 @Service
-public class TravelService {
-
+public class MediaService {
+	
 	
 
+	
 	@Autowired
-	TravelRepo repo;
+	MediaRepo repo;
 	
-	public boolean add(Travel entity) {
+	public boolean add(Media entity) {
 		
 	try {
+		
+		System.out.println("-------------------"+entity.getPath());
+		
+		File source = new File(entity.getPath());
+		File dest = new File("/Desktop/new folder/Eclipse/dashboard");
+		try {
+		    FileUtils.copyDirectory(source, dest);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
+		
+		
 		
 		repo.save(entity);
 		
@@ -35,7 +51,7 @@ public class TravelService {
 	}
 	
 
-	public List<Travel> getAll(){
+	public List<Media> getAll(){
 		
 		try {
 			return repo.findAll();
@@ -47,7 +63,7 @@ public class TravelService {
 	}
 
 	
-	public Optional<Travel> getById(long id) {
+	public Optional<Media> getById(long id) {
 		
 		try {
 			return repo.findById(id);
@@ -70,20 +86,7 @@ public class TravelService {
 		}
 		
 	}
+	
+	
 
-
-	public Boolean  updateStatus(Long id,boolean status1){
-		
-		try {
-			repo.updateStatus(id,status1);
-			
-			return true;
-		} catch (Exception e) {			
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	
-	
 }
